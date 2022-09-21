@@ -24,9 +24,7 @@ module.exports = {
    autocompleteChoices: ['faq', 'install', 'collection', 'promise', 'debug'],
    async execute(interaction) {
       try {
-         const r = await fetch('https://ktab-sgr25.smartschool.be/index.php/deeplink/528/506f59e2-9d7e-45be-b86a-6c2a0e1f863a')
-         console.log(r.headers);
-
+         
          return await interaction.reply('Done')
       } catch (err) {
          logs.error(interaction.client, err, 'Triggered in test command');
