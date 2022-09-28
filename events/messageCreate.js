@@ -201,7 +201,12 @@ module.exports = {
                .then(async (messages) => {
                   const previousMsg = messages.last();
                   if (previousMsg.author.id === message.author.id) {
-                     await message.delete();
+                     try {
+                        await message.delete();
+                     } catch (err) {
+                        logs.error(client, err)
+                     }
+
                      return;
                   }
                });
