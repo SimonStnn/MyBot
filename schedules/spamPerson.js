@@ -88,14 +88,26 @@ module.exports = {
             //       value: `${quote.text}\n- ${quote.author}`,
             //    },
             // ]);
-           
+
             // Send embed to users.
             for (let i = 0; i < users.length; i++) {
                 const userId = users[i];
-                const spamPerson = await client.users.fetch(userId);
-                await spamPerson.send({ embeds: [embed] }).catch(() => {
-                    logs.error(client, err, `Failed to dm ${spamPerson.tag}`);
-                });
+                try {
+                    const spamPerson = await client.users.fetch(userId);
+                    await spamPerson.send({ embeds: [embed] }).catch(() => {
+                        logs.error(
+                            client,
+                            err,
+                            `Failed to dm ${spamPerson.tag}`
+                        );
+                    });
+                } catch (err) {
+                    logs.error(
+                        client,
+                        err,
+                        `Failed to send good night message to ${userId}`
+                    );
+                }
             }
         } catch (err) {
             logs.error(client, err);
