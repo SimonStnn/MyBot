@@ -67,8 +67,6 @@ module.exports = {
             aansprekingen[Math.floor(Math.random() * aansprekingen.length)];
         const message = messages[Math.floor(Math.random() * messages.length)];
 
-        embed.setDescription(`${aanspreking} <@${userId}>, ` + message);
-
         // Get random quote
         // const url = 'https://type.fit/api/quotes';
         let quote;
@@ -93,6 +91,10 @@ module.exports = {
             for (let i = 0; i < users.length; i++) {
                 const userId = users[i];
                 try {
+                    embed.setDescription(
+                        `${aanspreking} <@${userId}>, ` + message
+                    );
+
                     const spamPerson = await client.users.fetch(userId);
                     await spamPerson.send({ embeds: [embed] }).catch(() => {
                         logs.error(
