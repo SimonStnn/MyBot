@@ -12,14 +12,16 @@ module.exports = {
       //? Check db connection
       if (!mongoose.connection.readyState && (state === 1 || state === null)) {
          const guild = client.guilds.cache.get(guildIds.main);
-
+         
+         console.log("No db connection")
+         
          await updatePerms(
             client,
             guild,
             channelIds.dontBreakChain,
             guild.id,
             false
-         );
+            );
          await updatePerms(
             client,
             guild,
@@ -33,7 +35,7 @@ module.exports = {
             'Update of Perms',
             null,
             'Closed channels due to no database connection.'
-         );
+            );
          state = 0;
       } else if (
          mongoose.connection.readyState &&
@@ -49,16 +51,6 @@ module.exports = {
             null
          );
 
-         const tgmcData = await tgmcDataModel.findById(tgmcDataID);
-         if (tgmcData.state == 'open') {
-            await updatePerms(
-               client,
-               guild,
-               channelIds.tgmc,
-               roleIds.tgmcParticipant,
-               true
-            );
-         }
          if (state !== null) {
             await logs.post(
                client,
