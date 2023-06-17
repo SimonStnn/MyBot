@@ -2,7 +2,7 @@ import { SlashCommandBuilder, ChatInputCommandInteraction, Client } from 'discor
 
 const wait = require('util').promisify(setTimeout);
 
-module.exports = {
+export default {
    data: new SlashCommandBuilder()
       .setName('pong')
       .setDescription('Replies with Ping!'),

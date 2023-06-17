@@ -47,7 +47,7 @@ for (const folder of commandSubFolders) {
    const commandFiles = fs.readdirSync(subfolderPath).filter(file => file.endsWith('.js'));
    for (const file of commandFiles) {
       const filePath = path.join(subfolderPath, file);
-      const command = require(filePath);
+      const command = require(filePath).default;
       // Set a new item in the Collection with the key as the command name and the value as the exported module
       if ('data' in command && 'execute' in command) {
          client.commands.set(command.data.name, command);

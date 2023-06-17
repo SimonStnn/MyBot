@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, Client } from "discord.js";
 
-module.exports = {
+export default {
    data: new SlashCommandBuilder()
       .setName('ping')
       .setDescription('returns the bots ping.'),
