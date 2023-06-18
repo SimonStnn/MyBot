@@ -1,15 +1,15 @@
 import { Client, ActivityType } from 'discord.js';
 import { guildId, channelIds, roleIds, userIds } from '../config.json';
 import mongoose from 'mongoose';
+import logger from '../logger';
 
 // When the client is ready, run this code (only once)
 module.exports = {
    name: 'ready',
    once: true,
    async execute(client: Client) {
-      console.log('Preparing...');
+      logger.info('Preparing...');
       client.user?.setActivity('Starting...', { type: ActivityType.Streaming });
-
 
       const databaseConnection = process.env.DATABASE_CONNECTION;
 
@@ -19,17 +19,22 @@ module.exports = {
 
       mongoose.connect(databaseConnection)
          .then((_mongoose) => {
-            console.log('Connected to DataBase.');
+            logger.info('Connected to DataBase.');
          })
          .catch((_err) => {
-            console.error("Could not connect to database")
+            logger.warn("Could not connect to database")
 
          });
+      mongoose.connection.on("open", () => {
+         logger.debug("Connection opened")
+      })
+      mongoose.connection.on("", () => {
+      })
       // useNewUrlParser: true,
       // useUnifiedTopology: true,
       //userFindAndModify: false
 
-      console.log("Checkking id's in config.json");
+      logger.info("Checkking id's in config.json");
 
       const guild = client.guilds.cache.get(guildId);
       if (guild) {
@@ -42,11 +47,7 @@ module.exports = {
       }
 
 
-      console.log(
-         'Ready!',
-         'Logged in as',
-         `${client.user?.tag}`
-      );
+      logger.info(`Ready! Logged in as ${client.user?.tag}`);
       client.user?.setActivity('/help', { type: ActivityType.Listening });
    },
 };
@@ -86,13 +87,13 @@ async function check(text: string, _ids: IdsObject, fetch: Callback) {
    }
 
    if (found.length > 0) {
-      console.log(
+      logger.info(
          `<->   Found ${text + (found.length > 1 ? 's' : '')}:`.padEnd(21),
          found.join(', ')
       );
    }
    if (notFound.length > 0) {
-      console.log(
+      logger.info(
          `<!>   Did not find ${text + (notFound.length > 1 ? 's' : '')}:`.padEnd(25),
          notFound.join(', ')
       );

@@ -5,6 +5,7 @@ import { clientId, guildId } from '../../config.json';
 import fs from 'node:fs';
 import path from 'node:path';
 import Response from '../../protocols/response';
+import logger from '../../logger';
 
 export default new Command(
     new SlashCommandBuilder()
@@ -36,7 +37,7 @@ export default new Command(
 
         // and deploy your commands!
         try {
-            console.log(
+            logger.info(
                 `Started refreshing ${commands.length} application (/) commands.`
             );
 
@@ -46,7 +47,7 @@ export default new Command(
                 { body: commands }
             ) as Array<Object>;
 
-            console.log(
+            logger.info(
                 `Successfully reloaded ${data.length} application (/) commands.`
             );
             await interaction.editReply(new Response({
