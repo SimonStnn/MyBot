@@ -40,6 +40,7 @@ for (const folder of commandSubFolders) {
    for (const file of commandFiles) {
       const filePath = path.join(subfolderPath, file);
       const command: Command = require(filePath).default;
+      command.category = folder
 
       // Set a new item in the Collection with the key as the command name and the value as the exported module
       if (command.data) {

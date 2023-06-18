@@ -3,6 +3,7 @@ import { Client, Interaction, ChatInputCommandInteraction, SlashCommandBuilder, 
 export default class Command {
     data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">
     execute: (client: Client, interaction: ChatInputCommandInteraction) => Promise<Response | any>
+    category: string | undefined;
 
     constructor(
         data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">,
