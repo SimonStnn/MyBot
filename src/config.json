@@ -1,10 +1,6 @@
 {
    "clientId": "816433854309990472",
-   "guildIds": {
-      "main": "702211644922790018",
-      "mc": "1007648894194290748"
-   },
-
+   "guildId": "702211644922790018",
    "chainValuesId": "61c5d9a6d8918f68201c9d90",
    "tgmcDataID": "61e7089e07530a7b30f20192",
    "storyDataId": "623c9c5338a9abd4adfdb6c8",

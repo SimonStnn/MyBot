@@ -1,5 +1,5 @@
 import { Client, ActivityType } from 'discord.js';
-import { guildIds, channelIds, roleIds, userIds } from '../config.json';
+import { guildId, channelIds, roleIds, userIds } from '../config.json';
 import mongoose from 'mongoose';
 
 // When the client is ready, run this code (only once)
@@ -31,7 +31,7 @@ module.exports = {
 
       console.log("Checkking id's in config.json");
 
-      const guild = client.guilds.cache.get(guildIds.main);
+      const guild = client.guilds.cache.get(guildId);
       if (guild) {
 
          await Promise.all([
