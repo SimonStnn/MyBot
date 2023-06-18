@@ -1,11 +1,11 @@
 import { Client, Interaction, ChatInputCommandInteraction, SlashCommandBuilder, Message } from "discord.js";
 
 export default class Command {
-    data: SlashCommandBuilder
+    data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">
     execute: (client: Client, interaction: ChatInputCommandInteraction) => Promise<Response | any>
 
     constructor(
-        data: SlashCommandBuilder,
+        data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">,
         execute: (client: Client, interaction: ChatInputCommandInteraction) => Promise<Response | any>
     ) {
         this.data = data
