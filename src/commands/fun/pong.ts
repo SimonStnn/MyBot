@@ -1,15 +1,16 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, Client } from 'discord.js';
-import Message from '../../protocols/message';
+import Embed from '../../protocols/embed';
+import Command from '../../protocols/command';
 
 const wait = require('util').promisify(setTimeout);
 
-export default {
-   data: new SlashCommandBuilder()
+export default new Command(
+   new SlashCommandBuilder()
       .setName('pong')
       .setDescription('Replies with Ping!'),
-   async execute(client: Client,interaction: ChatInputCommandInteraction) {
+   async (client, interaction)=> {
       await interaction.deferReply();
       await wait(500);
-      await interaction.editReply(new Message({ content: 'Ping!' }));
+      await interaction.editReply(new Embed({ content: 'Ping!' }));
    },
-};
+)
