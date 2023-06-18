@@ -2,10 +2,11 @@ const { REST, Routes } = require('discord.js');
 const { clientId, guildId } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
+require('dotenv').config();
 
 const commands = [];
 // Grab all the command files from the commands directory you created earlier
-const foldersPath = path.join(__dirname,'..', 'build', 'commands');
+const foldersPath = path.join(__dirname, '..', 'build', 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
@@ -20,19 +21,17 @@ for (const folder of commandFolders) {
         console.log(filePath);
         try {
             const command = require(filePath);
-            console.log("name:",command.default.data.name);
+            console.log('name:', command.default.data.name);
             commands.push(command.default.data.toJSON());
         } catch (err) {
             console.log(err);
-            continue
+            continue;
         }
     }
 }
 
 // Construct and prepare an instance of the REST module
-const rest = new REST().setToken(
-    'ODE2NDMzODU0MzA5OTkwNDcy.YD65Rw.dE34cmKaQYoSiaDAKJxkoUZGW9Y'
-);
+const rest = new REST().setToken(process.env.DISCORD_TOKEN);
 
 // and deploy your commands!
 (async () => {
