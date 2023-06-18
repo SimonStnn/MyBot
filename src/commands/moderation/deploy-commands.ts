@@ -1,11 +1,10 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, Client } from 'discord.js';
-import Embed from '../../protocols/embed';
 import Command from '../../protocols/command';
-
 import { REST, Routes } from 'discord.js';
 import { clientId, guildId } from '../../config.json';
 import fs from 'node:fs';
 import path from 'node:path';
+import Response from '../../protocols/response';
 
 export default new Command(
     new SlashCommandBuilder()
@@ -50,7 +49,8 @@ export default new Command(
             console.log(
                 `Successfully reloaded ${data.length} application (/) commands.`
             );
-            await interaction.editReply(new Embed({
+            await interaction.editReply(new Response({
+                interaction,
                 content: `Successfully reloaded ${data.length} application (/) commands.`
             }))
         } catch (error) {
