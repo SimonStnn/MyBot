@@ -1,4 +1,5 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, Client } from 'discord.js';
+import Message from '../../protocols/message';
 
 const wait = require('util').promisify(setTimeout);
 
@@ -9,6 +10,6 @@ export default {
    async execute(client: Client,interaction: ChatInputCommandInteraction) {
       await interaction.deferReply();
       await wait(500);
-      await interaction.editReply({ content: 'Ping!' });
+      await interaction.editReply(new Message({ content: 'Ping!' }));
    },
 };
