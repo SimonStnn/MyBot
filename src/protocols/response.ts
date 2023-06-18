@@ -1,13 +1,12 @@
 import { Interaction, InteractionReplyOptions, } from "discord.js";
-import Message from "./message";
-import { MessageOptions } from "./message";
+import Embed, { EmbedOptions } from "./embed";
 
-export interface ResponseOptions extends MessageOptions {
+export interface ResponseOptions extends EmbedOptions {
     interaction: Interaction,
     ephemeral?: boolean,
 }
 
-export default class Response extends Message implements InteractionReplyOptions {
+export default class Response extends Embed implements InteractionReplyOptions {
     ephemeral?: boolean | undefined;
 
     constructor({ interaction, title, content, fetchReply, ephemeral }: ResponseOptions) {
