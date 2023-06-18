@@ -1,6 +1,6 @@
 import { Client, EmbedBuilder, } from "discord.js";
-// import client from "../index"
-const client = new Client({ intents: [] })
+import client from "../client";
+// const client = new Client({ intents: [] })
 
 export const emptyCharachter = '\u200B'
 export const emptyField = { name: emptyCharachter, value: emptyCharachter }
