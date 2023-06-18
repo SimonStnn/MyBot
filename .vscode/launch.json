@@ -5,14 +5,28 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "command": "npm run dev",
+            "name": "Run npm start",
+            "request": "launch",
+            "type": "node-terminal",
+            "preLaunchTask": "tsc: build",
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/build/index.js",
             "preLaunchTask": "tsc: build",
+            "program": "${workspaceFolder}/build/index.js",
+            "args": [
+                "run",
+                "dev"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
