@@ -1,34 +1,30 @@
-import { EmbedBuilder, } from "discord.js";
-import client from "../index"
 
 export const emptyCharachter = '\u200B'
 export const emptyField = { name: emptyCharachter, value: emptyCharachter }
 
 export interface MessageOptions {
-    title?: string | null,
-    content?: string | null,
-    fetchReply?: boolean,
+    content: string,
+    fetchReply?: boolean
 }
 
-export default class Message extends EmbedBuilder {
+export default class Message {
     content?: string | undefined;
     tts?: boolean = false;
     fetchReply?: boolean | undefined;
-    embeds: (EmbedBuilder)[] = [
-        this.setTimestamp()
-            .setColor("DarkPurple")
-    ];
+    embeds = []
 
-    constructor({ title, content, fetchReply }: MessageOptions) {
-        super()
-        this.content = undefined;
-        this.fetchReply = fetchReply
-        this.setTitle(title ? title : null)
-            .setDescription(content ? content : null)
-            .setFooter({
-                text: client.user?.username ?? "-",
-                iconURL: client.user?.displayAvatarURL() ?? undefined
-            })
-
+    constructor(content: string, fetchReply?: boolean)
+    constructor({ content, fetchReply }: MessageOptions)
+    constructor(args: string | MessageOptions, fetch?: boolean) {
+        if (typeof args === 'string') {
+            // Handle constructor with string parameter
+            this.content = args;
+            this.fetchReply = fetch
+        } else {
+            // Handle constructor with MessageOptions parameter
+            const { content, fetchReply } = args;
+            this.content = content;
+            this.fetchReply = fetchReply;
+        }
     }
 }
