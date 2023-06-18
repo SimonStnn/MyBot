@@ -1,19 +1,27 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, Client } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import Command from '../../protocols/command';
+import Response from '../../protocols/response';
 
-export default {
-   data: new SlashCommandBuilder()
+export default new Command(
+   new SlashCommandBuilder()
       .setName('ping')
       .setDescription('returns the bots ping.'),
-   database: false,
-   async execute(client: Client, interaction: ChatInputCommandInteraction) {
-      const sent = await interaction.reply({
-         content: 'Pinging...',
-         fetchReply: true,
-      });
+   async (client, interaction) => {
+      const sent = await interaction.reply(new Response({
+         interaction,
+         content: "Pinging...",
+         fetchReply:
+            true
+      }));
       await interaction.editReply(
-         `Websocket heartbeat: ${interaction.client.ws.ping
-         }ms.\nRoundtrip latency: ${sent.createdTimestamp - interaction.createdTimestamp
-         }ms`
+         new Response({
+            interaction,
+            title: 'Ping',
+            content: `Websocket heartbeat: ${interaction.client.ws.ping
+               }ms.\nRoundtrip latency: ${sent.createdTimestamp - interaction.createdTimestamp
+               }ms`
+         }
+         )
       );
-   },
-};
+   }
+)
