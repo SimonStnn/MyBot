@@ -1,4 +1,4 @@
-import { Client, EmbedBuilder, } from "discord.js";
+import { EmbedBuilder, } from "discord.js";
 import client from "../client";
 // const client = new Client({ intents: [] })
 

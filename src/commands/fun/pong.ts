@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, Client } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
 import Embed from '../../protocols/embed';
 import Command from '../../protocols/command';
 

@@ -1,4 +1,4 @@
-import { Client, Interaction, ChatInputCommandInteraction, SlashCommandBuilder, Message, CacheType } from "discord.js";
+import { Client, ChatInputCommandInteraction, SlashCommandBuilder, CacheType } from "discord.js";
 
 interface CommandOptions {
     data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">

@@ -1,4 +1,4 @@
-import { EmbedBuilder, InteractionType, Client, Interaction } from 'discord.js';
+import { Client, Interaction } from 'discord.js';
 import { userIds, channelIds } from '../config.json';
 import Response from '../protocols/response';
 import Command from '../protocols/command';

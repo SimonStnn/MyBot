@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, Client } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
 import Command from '../../protocols/command';
 import { REST, Routes } from 'discord.js';
 import { clientId, guildId } from '../../config.json';

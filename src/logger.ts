@@ -1,5 +1,4 @@
 import { Client , Events} from 'discord.js';
-import client from './client';
 import pino from 'pino';
 const logger = pino();
 
