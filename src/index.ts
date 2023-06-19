@@ -5,7 +5,20 @@ import { Collection } from 'discord.js';
 import Command from './protocols/command';
 import client from './client'
 import { setupLogger } from './log/logger';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 require('dotenv').config();
+
+//
+//* Init database
+//
+
+client.database = new MongoClient(process.env.DATABASE_CONNECTION as string, {
+   serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+   }
+});
 
 //
 //* Event handler
@@ -34,7 +47,6 @@ const commandSubFolders = fs.readdirSync(commandsPath).filter(file => {
    const filePath = path.join(commandsPath, file);
    return fs.statSync(filePath).isDirectory();
 });
-
 for (const folder of commandSubFolders) {
    const subfolderPath = path.join(commandsPath, folder)
    const commandFiles = fs.readdirSync(subfolderPath).filter(file => file.endsWith('.js'));

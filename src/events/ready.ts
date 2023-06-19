@@ -2,6 +2,7 @@ import { Client, ActivityType } from 'discord.js';
 import { guildId, channelIds, roleIds, userIds } from '../config.json';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import logger from '../log/logger';
+import { connectToDatabase, handleDatabaseEvents } from '../database/database';
 
 // When the client is ready, run this code (only once)
 export default {
@@ -17,35 +18,19 @@ export default {
          throw new Error('Missing database connection string.');
       }
 
+      // Add event listeners
+      handleDatabaseEvents(client.database)
       // Connect to mongoDB
-      client.database = new MongoClient(process.env.DATABASE_CONNECTION as string, {
-         serverApi: {
-            version: ServerApiVersion.v1,
-            strict: true,
-            deprecationErrors: true,
-         }
-      });
-      try {
-         logger.info("Connecting to MongoDB...");
-         // Connect the client to the server	(optional starting in v4.7)
-         await client.database.connect();
-         // Send a ping to confirm a successful connection
-         await client.database.db("admin").command({ ping: 1 });
-         logger.info("Successfully connected to MongoDB!");
-      } catch (err) {
-         logger.warn(`Failed to connect to MongoDB.\n${err}`)
-      }
+      client.database = await connectToDatabase()
 
       const guild = client.guilds.cache.get(guildId);
       if (guild) {
-
          await Promise.all([
             check('channel', channelIds, (id) => guild.channels.cache.get(id)),
             check('role', roleIds, (id) => guild.roles.cache.get(id)),
             check('user', userIds, async (id) => await client.users.fetch(id)),
          ]);
       }
-
 
       logger.info(`Ready! Logged in as ${client.user?.tag}`);
       client.user?.setActivity('/help', { type: ActivityType.Listening });
