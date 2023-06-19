@@ -7,11 +7,11 @@ import path from 'node:path';
 import Response from '../../protocols/response';
 import logger from '../../logger';
 
-export default new Command(
-    new SlashCommandBuilder()
+export default new Command({
+    data: new SlashCommandBuilder()
         .setName('deploy-commands')
         .setDescription('Deploy commands!'),
-    async (client, interaction) => {
+    async execute(client, interaction) {
         await interaction.deferReply();
         const commands = [];
         // Grab all the command files from the commands directory you created earlier
@@ -58,5 +58,6 @@ export default new Command(
             // And of course, make sure you catch and log any errors!
             console.error(error);
         }
-    },
+    }
+}
 )

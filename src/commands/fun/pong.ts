@@ -4,13 +4,13 @@ import Command from '../../protocols/command';
 
 const wait = require('util').promisify(setTimeout);
 
-export default new Command(
-   new SlashCommandBuilder()
+export default new Command({
+   data: new SlashCommandBuilder()
       .setName('pong')
       .setDescription('Replies with Ping!'),
-   async (client, interaction)=> {
+   async execute(client, interaction) {
       await interaction.deferReply();
       await wait(500);
       await interaction.editReply(new Embed({ content: 'Ping!' }));
-   },
-)
+   }
+})

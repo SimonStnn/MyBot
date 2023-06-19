@@ -2,11 +2,11 @@ import { SlashCommandBuilder } from "discord.js";
 import Command from '../../protocols/command';
 import Response from '../../protocols/response';
 
-export default new Command(
-   new SlashCommandBuilder()
+export default new Command({
+   data: new SlashCommandBuilder()
       .setName('ping')
       .setDescription('returns the bots ping.'),
-   async (client, interaction) => {
+   async execute(client, interaction) {
       const sent = await interaction.reply(new Response({
          interaction,
          content: "Pinging...",
@@ -24,4 +24,4 @@ export default new Command(
          )
       );
    }
-)
+})
