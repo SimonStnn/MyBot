@@ -13,7 +13,7 @@ const disabledChannels = [
 
 let cooldowns = [];
 
-module.exports = {
+export default {
    name: 'interactionCreate',
    async execute(client: Client, interaction: Interaction) {
       if (!interaction.isChatInputCommand()) return;

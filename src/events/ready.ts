@@ -4,7 +4,7 @@ import { MongoClient, ServerApiVersion } from 'mongodb';
 import logger from '../log/logger';
 
 // When the client is ready, run this code (only once)
-module.exports = {
+export default {
    name: 'ready',
    once: true,
    async execute(client: Client) {
