@@ -6,17 +6,41 @@ require('dotenv').config();
 
 const commands = [];
 // Grab all the command files from the commands directory you created earlier
+const srcFolderPath = path.join(__dirname, '..', 'src', 'commands');
 const foldersPath = path.join(__dirname, '..', 'build', 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
     // Grab all the command files from the commands directory you created earlier
+    const srcCommandsPath = path.join(srcFolderPath, folder);
     const commandsPath = path.join(foldersPath, folder);
     const commandFiles = fs
         .readdirSync(commandsPath)
         .filter((file) => file.endsWith('.js'));
     // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
     for (const file of commandFiles) {
+        const srcFilePath = path.join(
+            srcCommandsPath,
+            file.replace('.js', '.ts')
+        );
+        if (
+            !(() => {
+                try {
+                    fs.accessSync(srcFilePath, fs.constants.F_OK);
+                    return true;
+                } catch (err) {
+                    return false;
+                }
+            })()
+        ) {
+            console.warn(
+                `${file.replace(
+                    '.js',
+                    '.ts'
+                )} does not exist in ${srcCommandsPath}`
+            );
+            continue;
+        }
         const filePath = path.join(commandsPath, file);
         console.log(filePath);
         try {

@@ -15,17 +15,32 @@ export default new Command({
         await interaction.deferReply();
         const commands = [];
         // Grab all the command files from the commands directory you created earlier
+        const srcFolderPath = path.join(__dirname, '..', '..', '..', 'src', 'commands');
         const foldersPath = path.join(__dirname, '..', '..', 'commands');
         const commandFolders = fs.readdirSync(foldersPath);
 
         for (const folder of commandFolders) {
             // Grab all the command files from the commands directory you created earlier
+            const srcCommandsPath = path.join(srcFolderPath, folder);
             const commandsPath = path.join(foldersPath, folder);
             const commandFiles = fs
                 .readdirSync(commandsPath)
                 .filter((file) => file.endsWith('.js'));
             // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
             for (const file of commandFiles) {
+                const srcFilePath = path.join(srcCommandsPath, file.replace('.js', '.ts'))
+                if (!(() => {
+                    try {
+                        fs.accessSync(srcFilePath, fs.constants.F_OK);
+                        return true;
+                    } catch (err) {
+                        return false;
+                    }
+                })()) {
+                    logger.warn(`${file.replace('.js', '.ts')} does not exist in ${srcCommandsPath}`)
+                    continue
+                }
+
                 const filePath = path.join(commandsPath, file);
                 const command = require(filePath);
                 commands.push(command.default.data.toJSON());
