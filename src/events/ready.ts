@@ -26,13 +26,14 @@ module.exports = {
          }
       });
       try {
+         logger.info("Connecting to MongoDB...");
          // Connect the client to the server	(optional starting in v4.7)
          await client.database.connect();
          // Send a ping to confirm a successful connection
          await client.database.db("admin").command({ ping: 1 });
-         logger.log("Successfully connected to MongoDB!");
+         logger.info("Successfully connected to MongoDB!");
       } catch (err) {
-         logger.warn("Failed to connect to MongoDB.")
+         logger.warn(`Failed to connect to MongoDB.\n${err}`)
       }
 
       const guild = client.guilds.cache.get(guildId);
