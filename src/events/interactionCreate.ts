@@ -1,6 +1,5 @@
 import { EmbedBuilder, InteractionType, Client, Interaction } from 'discord.js';
 import { userIds, channelIds } from '../config.json';
-import mongoose from 'mongoose';
 import Response from '../protocols/response';
 import Command from '../protocols/command';
 
@@ -27,7 +26,7 @@ module.exports = {
       }
 
       try {
-         const responses = await command.execute(client, interaction);         
+         const responses = await command.execute(client, interaction);
       } catch (error) {
          console.error(error);
          if (interaction.replied || interaction.deferred)

@@ -1,6 +1,6 @@
 import { Client, ActivityType } from 'discord.js';
 import { guildId, channelIds, roleIds, userIds } from '../config.json';
-import mongoose from 'mongoose';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 import logger from '../logger';
 
 // When the client is ready, run this code (only once)
@@ -17,24 +17,23 @@ module.exports = {
          throw new Error('Missing database connection string.');
       }
 
-      mongoose.connect(databaseConnection)
-         .then((_mongoose) => {
-            logger.info('Connected to DataBase.');
-         })
-         .catch((_err) => {
-            logger.warn("Could not connect to database")
-
-         });
-      mongoose.connection.on("open", () => {
-         logger.debug("Connection opened")
-      })
-      mongoose.connection.on("", () => {
-      })
-      // useNewUrlParser: true,
-      // useUnifiedTopology: true,
-      //userFindAndModify: false
-
-      logger.info("Checkking id's in config.json");
+      // Connect to mongoDB
+      client.database = new MongoClient(process.env.DATABASE_CONNECTION as string, {
+         serverApi: {
+            version: ServerApiVersion.v1,
+            strict: true,
+            deprecationErrors: true,
+         }
+      });
+      try {
+         // Connect the client to the server	(optional starting in v4.7)
+         await client.database.connect();
+         // Send a ping to confirm a successful connection
+         await client.database.db("admin").command({ ping: 1 });
+         logger.log("Successfully connected to MongoDB!");
+      } catch (err) {
+         logger.warn("Failed to connect to MongoDB.")
+      }
 
       const guild = client.guilds.cache.get(guildId);
       if (guild) {
