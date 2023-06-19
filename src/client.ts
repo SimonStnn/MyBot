@@ -1,8 +1,10 @@
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import { MongoClient } from 'mongodb';
 
 declare module 'discord.js' {
     interface Client {
         commands: Collection<string, any>;
+        database: MongoClient
     }
 }
 
