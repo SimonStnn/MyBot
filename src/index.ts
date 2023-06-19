@@ -4,7 +4,7 @@ import path from 'node:path';
 import { Collection } from 'discord.js';
 import Command from './protocols/command';
 import client from './client'
-import { setupLogger } from './logger';
+import { setupLogger } from './log/logger';
 require('dotenv').config();
 
 //

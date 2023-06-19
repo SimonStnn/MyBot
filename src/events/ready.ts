@@ -1,7 +1,7 @@
 import { Client, ActivityType } from 'discord.js';
 import { guildId, channelIds, roleIds, userIds } from '../config.json';
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import logger from '../logger';
+import logger from '../log/logger';
 
 // When the client is ready, run this code (only once)
 module.exports = {

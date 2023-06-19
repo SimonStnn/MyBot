@@ -5,7 +5,7 @@ import { clientId, guildId } from '../../config.json';
 import fs from 'node:fs';
 import path from 'node:path';
 import Response from '../../protocols/response';
-import logger from '../../logger';
+import logger from '../../log/logger';
 
 export default new Command({
     data: new SlashCommandBuilder()
