@@ -12,7 +12,7 @@ import logger from './log/logger';
 //* Init database
 //
 
-client.database = new MongoClient(process.env.DATABASE_CONNECTION as string, {
+client.dbClient = new MongoClient(process.env.DATABASE_CONNECTION as string, {
    serverApi: {
       version: ServerApiVersion.v1,
       strict: true,

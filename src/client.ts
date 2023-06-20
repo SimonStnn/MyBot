@@ -4,7 +4,8 @@ import { MongoClient } from 'mongodb';
 declare module 'discord.js' {
     interface Client {
         commands: Collection<string, any>;
-        database: MongoClient
+        dbClient: MongoClient
+        
     }
 }
 

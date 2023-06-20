@@ -18,9 +18,9 @@ export default {
       }
 
       // Add event listeners
-      handleDatabaseEvents(client.database)
+      handleDatabaseEvents(client.dbClient)
       // Connect to mongoDB
-      client.database = await connectToDatabase()
+      client.dbClient = await connectToDatabase()
 
       const guild = client.guilds.cache.get(guildId);
       if (guild) {

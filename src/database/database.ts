@@ -6,21 +6,21 @@ import client from '../client';
 
 export async function connectToDatabase() {
         const eventName = "serverClosed";
-    client.database.on(eventName, event => {
+    client.dbClient.on(eventName, event => {
         console.log(`received ${eventName}: ${JSON.stringify(event, null, 2)}`);
     });
 
     try {
         logger.info("Connecting to MongoDB...");
         // Connect the client to the server	(optional starting in v4.7)
-        await client.database.connect();
+        await client.dbClient.connect();
         // Send a ping to confirm a successful connection
-        await client.database.db("admin").command({ ping: 1 });
+        await client.dbClient.db("admin").command({ ping: 1 });
         logger.info("Successfully connected to MongoDB!");
     } catch (err) {
         logger.warn(`Failed to connect to MongoDB.\n${err}`)
     }
-    return client.database
+    return client.dbClient
 }
 
 export function handleDatabaseEvents(mongoClient: MongoClient) {
