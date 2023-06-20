@@ -1,6 +1,5 @@
 import { Client, ActivityType } from 'discord.js';
 import { guildId, channelIds, roleIds, userIds } from '../config.json';
-import { MongoClient, ServerApiVersion } from 'mongodb';
 import logger from '../log/logger';
 import { connectToDatabase, handleDatabaseEvents } from '../database/database';
 
