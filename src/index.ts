@@ -2,11 +2,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { Collection } from 'discord.js';
+import { MongoClient, ServerApiVersion } from 'mongodb';
+require('dotenv').config();
 import Command from './protocols/command';
 import client from './client'
-import { MongoClient, ServerApiVersion } from 'mongodb';
 import logger from './log/logger';
-require('dotenv').config();
 
 //
 //* Init database
