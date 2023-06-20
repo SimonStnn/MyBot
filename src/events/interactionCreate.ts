@@ -2,6 +2,7 @@ import { Client, Interaction } from 'discord.js';
 import { userIds, channelIds } from '../config.json';
 import Response from '../protocols/response';
 import Command from '../protocols/command';
+import logger from '../log/logger';
 
 const bannedUsers = [userIds.Viktor];
 const disabledChannels = [
@@ -21,14 +22,14 @@ export default {
       const command: Command | null = interaction.client.commands.get(interaction.commandName);
 
       if (!command) {
-         console.error(`No command matching ${interaction.commandName} was found.`);
+         logger.error(`No command matching ${interaction.commandName} was found.`);
          return;
       }
 
       try {
          const responses = await command.execute(client, interaction);
       } catch (error) {
-         console.error(error);
+         logger.error(error);
          if (interaction.replied || interaction.deferred)
             await interaction.followUp(new Response({ interaction, content: 'There was an error while executing this command!', ephemeral: true }));
          else

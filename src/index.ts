@@ -4,8 +4,8 @@ import path from 'node:path';
 import { Collection } from 'discord.js';
 import Command from './protocols/command';
 import client from './client'
-import { setupLogger } from './log/logger';
 import { MongoClient, ServerApiVersion } from 'mongodb';
+import logger from './log/logger';
 require('dotenv').config();
 
 //
@@ -59,15 +59,10 @@ for (const folder of commandSubFolders) {
       if (command.data) {
          client.commands.set(command.data.name, command);
       } else {
-         console.warn(`[WARNING] The command at ${filePath} is missing a required "data" property.`);
+         logger.warn(`[WARNING] The command at ${filePath} is missing a required "data" property.`);
       }
    }
 }
-
-//
-//* Setup logger module
-//
-setupLogger(client)
 
 export default client;
 // Log in to Discord with your client's token
