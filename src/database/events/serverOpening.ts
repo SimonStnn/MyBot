@@ -1,6 +1,6 @@
-import logger from "../../log/logger";
-
+import { PresenceUpdateStatus } from "discord.js";
+import client from "../../client";
 
 export default async function serverOpening() {
-    logger.warn("OPEENNN")
+    client.user?.setStatus(PresenceUpdateStatus.Online)
 }

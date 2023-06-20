@@ -1,6 +1,8 @@
-import logger from "../../log/logger";
+import { ActivityType, PresenceUpdateStatus } from "discord.js";
+import client from "../../client";
 
 
 export default async function serverClosed() {
-    logger.warn("DICHTT")
+    client.user?.setStatus(PresenceUpdateStatus.DoNotDisturb)
+    client.user?.setActivity('for a database connection.', { type: ActivityType.Watching });
 }
