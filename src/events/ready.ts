@@ -1,11 +1,11 @@
-import { Client, ActivityType } from 'discord.js';
+import { Client, ActivityType, Events } from 'discord.js';
 import { guildId, channelIds, roleIds, userIds } from '../config.json';
 import logger from '../log/logger';
 import { connectToDatabase, handleDatabaseEvents } from '../database/database';
 
 // When the client is ready, run this code (only once)
 export default {
-   name: 'ready',
+   name: Events.ClientReady,
    once: true,
    async execute(client: Client) {
       logger.info('Preparing...');

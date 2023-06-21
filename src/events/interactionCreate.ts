@@ -1,4 +1,4 @@
-import { Client, Interaction } from 'discord.js';
+import { Client, Events, Interaction } from 'discord.js';
 import { userIds, channelIds } from '../config.json';
 import Response from '../protocols/response';
 import Command from '../protocols/command';
@@ -15,7 +15,7 @@ const disabledChannels = [
 let cooldowns = [];
 
 export default {
-   name: 'interactionCreate',
+   name: Events.InteractionCreate,
    async execute(client: Client, interaction: Interaction) {
       if (!interaction.isChatInputCommand()) return;
 
