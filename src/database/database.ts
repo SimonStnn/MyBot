@@ -1,12 +1,23 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import logger from "../log/logger";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import client from '../client';
 
 export enum collection {
     CHAIN_CURRENT = "chainCurrent",
     CHAIN_USER = "chainUsers",
+}
+
+export interface chainUserSchema {
+    _id: ObjectId,
+    count: Number,
+    broken: Number,
+}
+export interface chainCurrentSchema {
+    chain: string,
+    length: number,
+    lastPerson: string
 }
 
 export async function connectToDatabase() {
