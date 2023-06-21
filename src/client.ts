@@ -13,7 +13,13 @@ class DiscordClient extends Client {
     private static instance: DiscordClient;
 
     private constructor() {
-        super({ intents: [GatewayIntentBits.Guilds] });
+        super({
+            intents: [
+                GatewayIntentBits.Guilds,
+                GatewayIntentBits.GuildMessages,
+                GatewayIntentBits.MessageContent,
+            ]
+        });
         // Set up additional configuration and event handlers
     }
 
