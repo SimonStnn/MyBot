@@ -4,8 +4,13 @@ import logger from "../log/logger";
 import { MongoClient } from "mongodb";
 import client from '../client';
 
+export enum collection {
+    CHAIN_CURRENT = "chainCurrent",
+    CHAIN_USER = "chainUsers",
+}
+
 export async function connectToDatabase() {
-        const eventName = "serverClosed";
+    const eventName = "serverClosed";
     client.dbClient.on(eventName, event => {
         console.log(`received ${eventName}: ${JSON.stringify(event, null, 2)}`);
     });
