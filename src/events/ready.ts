@@ -21,7 +21,6 @@ export default {
       handleDatabaseEvents(client.dbClient)
       // Connect to mongoDB
       client.dbClient = await connectToDatabase()
-      client.database = client.dbClient.db("discordBot")
 
       const guild = client.guilds.cache.get(guildId);
       if (guild) {
