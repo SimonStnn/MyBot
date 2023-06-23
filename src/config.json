@@ -1,17 +1,11 @@
 {
    "clientId": "816433854309990472",
    "guildId": "702211644922790018",
-   "chainValuesId": "61c5d9a6d8918f68201c9d90",
-   "tgmcDataID": "61e7089e07530a7b30f20192",
-   "storyDataId": "623c9c5338a9abd4adfdb6c8",
+   "chainCurrentId": "649497d59b3d22645f1eab0a",
    "channelIds": {
-      "tgmc": "809109055809257512",
       "dailyMeme": "809014334964498476",
       "dontBreakChain": "848306522127335424",
       "counting": "818953831735099482",
-      "story": "802916052161921034",
-      "music": "802938858324754442",
-      "dankMemer": "802939618517319761",
       "log": "984551883240771604",
       "test": "806480788701970462"
    },
@@ -70,6 +64,5 @@
          "open": "\"",
          "close": "\""
       }
-   },
-   "tgmcRulesMsgLink": "https://discord.com/channels/702211644922790018/809159617577353276/812333248037257236"
+   }
 }
