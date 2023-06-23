@@ -4,8 +4,6 @@ import Response from '../../protocols/response';
 import { chainUser, chainCurrent } from '../../database/database';
 import { channelIds } from '../../config.json'
 import { ObjectId } from 'mongodb';
-import { emptyField } from '../../protocols/embed';
-
 
 function round(num: number, acc: number) {
     return Math.round((num + Number.EPSILON) * acc) / acc;
