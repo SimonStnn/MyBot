@@ -8,8 +8,6 @@ const bannedUsers = [userIds.Viktor];
 const disabledChannels = [
    channelIds.dontBreakChain,
    channelIds.counting,
-   channelIds.story,
-   channelIds.tgmc,
 ];
 
 let cooldowns = [];
