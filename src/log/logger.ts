@@ -1,10 +1,11 @@
-import { Client, Events, WebhookClient } from 'discord.js';
+import { WebhookClient } from 'discord.js';
 import pino from 'pino';
+import { logLevel } from '../config.json'
 
 const webhook = new WebhookClient({ url: process.env.WEBHOOK_LOG as string });
 
 const logger = pino({
-    level: 'info',
+    level: logLevel,
     hooks: {
         logMethod(inputArgs, method, level) {
             const logLevel = logger.levels.labels[level]
