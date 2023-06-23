@@ -14,15 +14,6 @@ class DontBreakTheChain {
     private length: number = 0
     private isBroken: boolean = false
 
-    constructor() {
-        (async () => {
-            await new Promise((resolve) => setTimeout(resolve, 11000)).then(async () => {  
-                const current = await chainCurrent.findOne({ _id: new ObjectId(chainCurrentId) });
-                this.length +=  current?.length ?? 0;
-            })
-        })()
-    }
-
     public static getInstance() {
         if (!DontBreakTheChain.instance) {
             DontBreakTheChain.instance = new DontBreakTheChain();
@@ -74,10 +65,11 @@ class DontBreakTheChain {
     }
     private async updateChain(message: Message) {
         logger.debug("Update chain")
-        await chainCurrent.updateOne({ _id: new ObjectId(chainCurrentId) }, {
+        const doc = await chainCurrent.findOneAndUpdate({ _id: new ObjectId(chainCurrentId) }, {
             $set: { lastPerson: message.author.id },
             $inc: { length: 1 }
         })
+        this.length = doc.value!.length + 1
     }
     private async updateUser(user: User, field: "count" | "broken") {
         logger.debug(`Update user: ${user.username}`)
