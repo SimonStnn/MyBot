@@ -9,7 +9,7 @@ export default {
         if (message.author.bot || message.system) return;
 
         try {
-            if (message.channel.id === channelIds.test) {
+            if (message.channel.id === channelIds.dontBreakChain) {
                 // Handle new message to extend the chain
                 dontBreakTheChain.handleNewLink(message)
             }
