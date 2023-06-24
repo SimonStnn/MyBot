@@ -1,4 +1,4 @@
-import { Client, Events, Message } from "discord.js";
+import { Client, Events, Message, TextChannel } from "discord.js";
 import dontBreakTheChain from "../protocols/dbtc";
 import { channelIds } from '../config.json'
 import logger from "../log/logger";
@@ -16,5 +16,7 @@ export default {
         } catch (err) {
             logger.error(err)
         }
+
+        logger.info(`${message.author.tag} in #${(message.channel as TextChannel).name}: ${message.content}`)
     },
 };
