@@ -8,6 +8,7 @@ const wait = require('util').promisify(setTimeout);
 
 
 export default async function serverClosed() {
+    logger.warn("Connection lost with database")
     client.user?.setStatus(PresenceUpdateStatus.DoNotDisturb)
     client.user?.setActivity('for a database connection.', { type: ActivityType.Watching });
 
