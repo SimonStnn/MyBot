@@ -6,3 +6,6 @@ node_modules/
 
 # Ignore build files
 build/*
+
+# Ignore web folder for now
+web/
