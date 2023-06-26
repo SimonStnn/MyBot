@@ -28,10 +28,14 @@ export default {
          const responses = await command.execute(client, interaction);
       } catch (error) {
          logger.error(error);
-         if (interaction.replied || interaction.deferred)
+         try {
+            if (interaction.replied || interaction.deferred)
             await interaction.followUp(new Response({ interaction, content: 'There was an error while executing this command!', ephemeral: true }));
-         else
+            else
             await interaction.reply(new Response({ interaction, content: 'There was an error while executing this command!', ephemeral: true }));
+         } catch (err) {
+            logger.error(err);
+         }
       }
    },
 };
