@@ -9,7 +9,7 @@ function getTime(timestamp: Date) {
 export default new Command({
    data: new SlashCommandBuilder()
       .setName('info')
-      .setDescription('Displey usefull info about the bot!'),
+      .setDescription('Display usefull info about the bot!'),
    async execute(client, interaction) {
       // Calculate uptime
       let totalSeconds = (client.uptime! / 1000) % 86400;
