@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from 'discord.js';
-import Embed from '../../protocols/embed';
 import Command from '../../protocols/command';
+import Response from '../../protocols/response';
 
 const wait = require('util').promisify(setTimeout);
 
@@ -11,6 +11,6 @@ export default new Command({
    async execute(client, interaction) {
       await interaction.deferReply();
       await wait(500);
-      await interaction.editReply(new Embed({ content: 'Ping!' }));
+      await interaction.editReply(new Response({interaction, content: 'Ping!' }));
    }
 })
