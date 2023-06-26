@@ -11,9 +11,9 @@ export default new Command({
     data: new SlashCommandBuilder()
         .setName('deploy-commands')
         .setDescription('Deploy commands!'),
-    requiredPermissions: (new PermissionsBitField([
+    requiredPermissions: new PermissionsBitField([
         PermissionsBitField.Flags.Administrator,
-    ])),
+    ]),
     async execute(client, interaction) {
         await interaction.deferReply();
         const commands = [];
