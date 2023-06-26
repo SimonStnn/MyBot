@@ -1,13 +1,14 @@
 import { Client, ChatInputCommandInteraction, SlashCommandBuilder, CacheType, Events, PermissionsBitField } from "discord.js";
 import client from "../client";
 import logger from "../log/logger";
+import Response from "./response";
 
 interface CommandOptions {
     data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">
     execute: (client: Client, interaction: ChatInputCommandInteraction) => Promise<Response | any>
     category?: string;
     usage?: string
-    requiredPermissions?: PermissionsBitField[]
+    requiredPermissions?: PermissionsBitField
     autocompleteChoices?: string[]
 }
 
@@ -16,13 +17,12 @@ export default class Command implements CommandOptions {
     execute: (client: Client<boolean>, interaction: ChatInputCommandInteraction<CacheType>) => Promise<Response | null>;
     category?: string;
     usage?: string
-    requiredPermissions?: PermissionsBitField[];
+    requiredPermissions?: PermissionsBitField;
 
     constructor(
         { data, execute, category, autocompleteChoices }: CommandOptions
     ) {
         this.data = data
-        this.execute = execute
         this.category = category
 
         if (autocompleteChoices) {
@@ -45,6 +45,20 @@ export default class Command implements CommandOptions {
                     logger.error(err)
                 }
             });
+        }
+
+        this.execute = async (client, interaction) => {
+            if (
+                this.requiredPermissions &&
+                !(interaction.member?.permissions as Readonly<PermissionsBitField>).has(this.requiredPermissions)) {
+                return await interaction.reply(new Response({
+                    interaction,
+                    content: "You don't have the required permissions to execute this command."
+                }))
+            }
+
+            const output = await execute(client, interaction)
+            return output
         }
     }
 }
