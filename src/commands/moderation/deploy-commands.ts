@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js';
+import { PermissionsBitField, SlashCommandBuilder } from 'discord.js';
 import Command from '../../protocols/command';
 import { REST, Routes } from 'discord.js';
 import { clientId, guildId } from '../../config.json';
@@ -11,6 +11,9 @@ export default new Command({
     data: new SlashCommandBuilder()
         .setName('deploy-commands')
         .setDescription('Deploy commands!'),
+    requiredPermissions: (new PermissionsBitField([
+        PermissionsBitField.Flags.Administrator,
+    ])),
     async execute(client, interaction) {
         await interaction.deferReply();
         const commands = [];
