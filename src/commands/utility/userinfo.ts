@@ -1,5 +1,4 @@
 import { SlashCommandBuilder } from 'discord.js';
-import Embed from '../../protocols/embed';
 import Command from '../../protocols/command';
 import Response from '../../protocols/response';
 
