@@ -143,7 +143,7 @@ export default new Command({
                 let perms = '';
                 if (command.requiredPermissions) {
                     perms += 'Permissions: ';
-                    perms += '`' + command.requiredPermissions.join('`, `') + '`';
+                    perms += '`' + command.requiredPermissions.toArray().join('`, `') + '`';
                     perms += '\n';
                 }
 
