@@ -1,4 +1,4 @@
-import { Client, ChatInputCommandInteraction, SlashCommandBuilder, CacheType, Events } from "discord.js";
+import { Client, ChatInputCommandInteraction, SlashCommandBuilder, CacheType, Events, PermissionsBitField } from "discord.js";
 import client from "../client";
 import logger from "../log/logger";
 
@@ -6,6 +6,8 @@ interface CommandOptions {
     data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">
     execute: (client: Client, interaction: ChatInputCommandInteraction) => Promise<Response | any>
     category?: string;
+    usage?: string
+    requiredPermissions?: PermissionsBitField[]
     autocompleteChoices?: string[]
 }
 
@@ -13,6 +15,8 @@ export default class Command implements CommandOptions {
     data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">;
     execute: (client: Client<boolean>, interaction: ChatInputCommandInteraction<CacheType>) => Promise<Response | null>;
     category?: string;
+    usage?: string
+    requiredPermissions?: PermissionsBitField[];
 
     constructor(
         { data, execute, category, autocompleteChoices }: CommandOptions
