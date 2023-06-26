@@ -20,12 +20,12 @@ export default class Command implements CommandOptions {
     requiredPermissions?: PermissionsBitField;
 
     constructor(
-        { data, execute, category, autocompleteChoices }: CommandOptions
+        opts: CommandOptions
     ) {
-        this.data = data
-        this.category = category
+        this.data = opts.data
+        this.category = opts.category
 
-        if (autocompleteChoices) {
+        if (opts.autocompleteChoices) {
             client.on(Events.InteractionCreate, async (interaction) => {
                 if (
                     !interaction.isAutocomplete() ||
@@ -33,7 +33,7 @@ export default class Command implements CommandOptions {
                 ) return
 
                 const focusedValue = interaction.options.getFocused();
-                let filtered = autocompleteChoices
+                let filtered = opts.autocompleteChoices!
                     .filter((choice) => choice.startsWith(focusedValue))
                     .slice(0, 25);
 
@@ -49,15 +49,16 @@ export default class Command implements CommandOptions {
 
         this.execute = async (client, interaction) => {
             if (
-                this.requiredPermissions &&
-                !(interaction.member?.permissions as Readonly<PermissionsBitField>).has(this.requiredPermissions)) {
+                opts.requiredPermissions &&
+                !(interaction.member?.permissions as Readonly<PermissionsBitField>).has(opts.requiredPermissions)
+            ) {
                 return await interaction.reply(new Response({
                     interaction,
                     content: "You don't have the required permissions to execute this command."
                 }))
             }
 
-            const output = await execute(client, interaction)
+            const output = await opts.execute(client, interaction)
             return output
         }
     }
