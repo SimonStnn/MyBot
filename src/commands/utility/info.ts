@@ -1,4 +1,5 @@
 import { SlashCommandBuilder, version as discordJsVersion } from 'discord.js';
+import { exec } from 'child_process';
 import Command from '../../protocols/command';
 import Response from '../../protocols/response';
 
@@ -61,8 +62,33 @@ export default new Command({
          `* OS: \`${process.platform}\``
 
       const response = new Response({ interaction })
-         .setTitle('Info')
-         .setDescription(description);
+         // .setTitle('Info')
+         // .setDescription(description);
+
+      // Get the npm list output as a string
+      const npmListOutput = await (async () => {
+         return new Promise<string>((resolve, reject) => {
+            exec('npm list', (error, stdout) => {
+               if (error) {
+                  console.error(`Error executing npm list: ${error.message}`);
+                  resolve('');
+               } else {
+                  const output = stdout.toString();
+                  resolve(output);
+               }
+            });
+         });
+      })()
+
+      response.addFields([{
+         name: "Info",
+         value: description,
+         inline: true,
+      }, {
+         name: "Npm list",
+         value: `\`\`\`ml\n${npmListOutput}\`\`\``,
+         inline: true,
+      }])
 
       return await interaction.reply(response);
    }
