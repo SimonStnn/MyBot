@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Fetch the latest changes from the git repository
+git fetch
+
 # Pull the latest version before running
 git pull
 
