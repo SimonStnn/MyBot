@@ -25,7 +25,7 @@ export default new Command({
                 response
                     .setTitle(`${user.username}'s data:`)
                     .setDescription(
-                        `We couldn't find any data for <@${user.id}>\nAsk them to say the chain in <#${channelIds.dontBreakChain}> first.`
+                        `We couldn't find any data for ${user}\nAsk them to say the chain in <#${channelIds.dontBreakChain}> first.`
                     );
                 return await interaction.reply({ embeds: [response] });
             }
@@ -55,7 +55,7 @@ export default new Command({
         for await (const user of topUsers) {
             const text = ` ▸ Score: \`${user.count}\` ▸ Chains broken: \`${user.broken}\``;
             const underline = interaction.user.id === user.id ? '__' : ''
-            topUsersList += `${i + 1}. ${underline}<@${user.id}>:${text}${underline}\n`;
+            topUsersList += `${i + 1}. ${underline} ${user}:${text}${underline}\n`;
             i++;
         }
         response.addFields({
