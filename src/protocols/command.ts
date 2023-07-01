@@ -1,10 +1,10 @@
-import { Client, ChatInputCommandInteraction, SlashCommandBuilder, CacheType, Events, PermissionsBitField } from "discord.js";
+import { Client, ChatInputCommandInteraction, SlashCommandBuilder, CacheType, Events, PermissionsBitField, SlashCommandSubcommandsOnlyBuilder } from "discord.js";
 import client from "../client";
 import logger from "../log/logger";
 import Response from "./response";
 
 interface CommandOptions {
-    data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">
+    data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup"> | SlashCommandSubcommandsOnlyBuilder,
     execute: (client: Client, interaction: ChatInputCommandInteraction) => Promise<Response | any>
     category?: string;
     usage?: string
@@ -13,7 +13,7 @@ interface CommandOptions {
 }
 
 export default class Command implements CommandOptions {
-    data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">;
+    data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup"> | SlashCommandSubcommandsOnlyBuilder;
     execute: (client: Client<boolean>, interaction: ChatInputCommandInteraction<CacheType>) => Promise<Response | null>;
     category?: string;
     usage?: string
