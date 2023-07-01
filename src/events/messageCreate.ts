@@ -18,7 +18,7 @@ export default {
             logger.error(err)
         }
 
-        logger.info(`${message.author.tag} in #${(message.channel as TextChannel).name}: ${message.content}`)
+        logger.info(`${message.author.username} in #${(message.channel as TextChannel).name}: ${message.content}`)
 
         // Display channel info
         inputListener.displayChannelInfo()
