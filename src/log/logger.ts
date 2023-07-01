@@ -12,7 +12,7 @@ const logger = pino({
             
             if (!inputArgs) return
 
-            if (level >= logger.levels.values["warn"]) {               
+            if (level >= logger.levels.values["info"]) {               
                 addToBuffer(logLevel, inputArgs.join(" "));
                 processBuffer();
             }
