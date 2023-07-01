@@ -55,7 +55,7 @@ export default new Command({
         for await (const user of topUsers) {
             const text = ` ▸ Score: \`${user.count}\` ▸ Chains broken: \`${user.broken}\``;
             const underline = interaction.user.id === user.id ? '__' : ''
-            topUsersList += `\`#${(i + 1).toString().padEnd(2)}\` | ${underline}<@${user.id}>:${text}${underline}\n`;
+            topUsersList += `${i + 1}. ${underline}<@${user.id}>:${text}${underline}\n`;
             i++;
         }
         response.addFields({
