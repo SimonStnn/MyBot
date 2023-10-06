@@ -1,16 +1,7 @@
 import { Client, Events, Interaction } from 'discord.js';
-import { userIds, channelIds } from '../config.json';
 import Response from '../protocols/response';
 import Command from '../protocols/command';
 import logger from '../log/logger';
-
-const bannedUsers = [userIds.Viktor];
-const disabledChannels = [
-   channelIds.dontBreakChain,
-   channelIds.counting,
-];
-
-let cooldowns = [];
 
 export default {
    name: Events.InteractionCreate,
