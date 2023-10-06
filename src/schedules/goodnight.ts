@@ -1,5 +1,5 @@
 import { Client } from "discord.js";
-import { userIds, colors } from "../config.json";
+import { colors } from "../config.json";
 import logger from "../log/logger";
 import Embed from "../protocols/embed";
 
@@ -55,7 +55,7 @@ export default {
       aansprekingen[Math.floor(Math.random() * aansprekingen.length)];
     const message = messages[Math.floor(Math.random() * messages.length)];
 
-    const users = Object.values(userIds);
+    const users = Object.values(process.env.DISCORD_TOKEN as Object);
     // Send embed to users.
     for (const user of users) {
       embed.setDescription(`${aanspreking} <@${user}>, ` + message);

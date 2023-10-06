@@ -1,5 +1,5 @@
 import { Client, ActivityType, Events } from 'discord.js';
-import { guildId, channelIds, roleIds, userIds } from '../config.json';
+import { guildId, channelIds, roleIds } from '../config.json';
 import logger from '../log/logger';
 import { connectToDatabase, handleDatabaseEvents } from '../database/database';
 
@@ -27,7 +27,6 @@ export default {
          await Promise.all([
             check('channel', channelIds, (id) => guild.channels.cache.get(id)),
             check('role', roleIds, (id) => guild.roles.cache.get(id)),
-            check('user', userIds, async (id) => await client.users.fetch(id)),
          ]);
       }
 

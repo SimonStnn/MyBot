@@ -16,12 +16,6 @@
       "activeMember": "813368369218584597",
       "muted": "805888941265387570"
    },
-   "userIds": {
-      "Anouck": "553885054556700693",
-      "Myrthe": "894980663655166012",
-      "Maxim": "437553723104034816",
-      "Simon": "572838043032223785"   
-   },
    "webhooks": {
       "test": {
          "url": "https://discord.com/api/webhooks/819194383010103299/HWZjyu1W8RrHdjZg9pT5K3cdP-pLE23H8K3mYWLcW0fakoAT5HCaaOgqAsr32COvSqOv",
