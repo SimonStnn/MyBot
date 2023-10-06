@@ -55,7 +55,7 @@ export default {
       aansprekingen[Math.floor(Math.random() * aansprekingen.length)];
     const message = messages[Math.floor(Math.random() * messages.length)];
 
-    const users = Object.values(process.env.DISCORD_TOKEN as Object);
+    const users = process.env.DISCORD_TOKEN!.replace(" ", "").split(",")
     // Send embed to users.
     for (const user of users) {
       embed.setDescription(`${aanspreking} <@${user}>, ` + message);
