@@ -43,7 +43,7 @@ const messages = [
 // │ │ │ │ │ │
 // * * * * * *
 export default {
-//   time: "10 22 * * *",
+  //   time: "10 22 * * *",
   time: "0 10 22 * * *",
   async execute(client: Client) {
     // Make embed
@@ -55,15 +55,17 @@ export default {
       aansprekingen[Math.floor(Math.random() * aansprekingen.length)];
     const message = messages[Math.floor(Math.random() * messages.length)];
 
-    const users = process.env.DISCORD_TOKEN!.replace(" ", "").split(",")
+    const users = process.env.GN_USERS!.replace(" ", "").split(",")
     // Send embed to users.
     for (const user of users) {
       embed.setDescription(`${aanspreking} <@${user}>, ` + message);
 
-      const spamPerson = await client.users.fetch(user);
-      await spamPerson.send({ embeds: [embed] }).catch((err) => {
+      try {
+        const spamPerson = await client.users.fetch(user);
+        await spamPerson.send({ embeds: [embed] });
+      } catch (err) {
         logger.error(err, `Failed to send good night message to ${user}`);
-      });
+      }
     }
   },
 };
