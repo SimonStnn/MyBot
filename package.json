@@ -27,11 +27,11 @@
     "discord.js": "^14.11.0",
     "dotenv": "^16.1.4",
     "mongodb": "^5.6.0",
-    "node-cron": "^3.0.2",
+    "node-cron": "^3.0.9",
     "pino": "^7.0.0-rc.9"
   },
   "devDependencies": {
-    "node-cron": "^3.0.9",
+    "@types/node-cron": "^3.0.9",
     "eslint": "^8.42.0",
     "typescript": "^5.1.3"
   },
