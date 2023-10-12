@@ -12,6 +12,7 @@ const aansprekingen = [
   "",
   "Sup",
   "Liefste",
+  "Lekker slapen,",
 ];
 
 const messages = [
@@ -49,7 +50,7 @@ const messages = [
   "In mijn gedachten en in mijn hart, ben je de enige voor mij. Droom zoet, mijn liefste. 🌜❤️",
   "De nacht is ons moment🌙, en ik kan niet wachten om in je armen te zijn. 💋",
   "De gedachte aan jou maakt me warm, zelfs in de koudste nacht. Slaap goed, mijn passie. 🔥❤️",
-  "Slaap lekker, mijn lief. Jouw aanraking is alles wat ik verlang 💖, zelfs in mijn dromen. 🌙"
+  "Slaap lekker, mijn lief. Jouw aanraking is alles wat ik verlang 💖, zelfs in mijn dromen. 🌙",
 ];
 
 // ┌────────────── second
@@ -61,7 +62,6 @@ const messages = [
 // │ │ │ │ │ │
 // * * * * * *
 export default {
-  //   time: "10 22 * * *",
   time: "0 10 22 * * *",
   async execute(client: Client) {
     // Make embed
