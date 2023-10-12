@@ -32,6 +32,24 @@ const messages = [
   "ik zal aan je denken vannacht, slaapwel. <3",
   "ik wens u een goede nachtrust en dat u zoete dromen hebt, Goede nacht.",
   "ik houd zo veel van jou, ik ben zo blij dat we elkaar ontmoet hebben, wat alweer zo lang geleden lijkt. 🕰",
+  "Onder de 🌙schijn, slaap lekker en droom fijn!",
+  "Onder de ✨sterrenpracht, wens ik je een goede nacht. Slaap lekker en droom zacht!",
+  "Maanlicht 🌕 verlicht je bed, rust nu uit, leg je hoofd te rusten, mijn lieve schat. Droom zacht en slaap goed!",
+  "Met de 🌄 op komst, rust nu uit en we zien elkaar bij zonsopgang. ☀️",
+  "Droomland wacht op je, slaapwel! 🌈🌌",
+  "Ga slapen en geniet van de 🌠-show in je dromen.",
+  "Slaap lekker, slaap zacht, droom van mij vannacht. 🌙",
+  "Ik wens je een goede nacht en een goede nachtrust, slaap lekker. 😴",
+  "Tot morgen, en moge je dromen vervuld worden! 🚀",
+  "Met elke ademhaling hou ik meer van je. Slaap lekker, mijn liefste. 💞😴",
+  "Mijn hart is gevuld met liefde voor jou, zelfs in mijn dromen. Slaap lekker, mijn liefje. ❤️😴",
+  "Slaap lekker, mijn liefste. Onze liefde schijnt helderder dan de sterren. 💖🌟",
+  "Elke nacht zonder jou is een nacht niet volledig. Droom van mij, zoals ik van jou droom. 💑😴",
+  "Terwijl de nacht valt, verlang ik naar jou. Slaap lekker ding, mijn liefste. ❤️🌜",
+  "In mijn gedachten en in mijn hart, ben je de enige voor mij. Droom zoet, mijn liefste. 🌜❤️",
+  "De nacht is ons moment🌙, en ik kan niet wachten om in je armen te zijn. 💋",
+  "De gedachte aan jou maakt me warm, zelfs in de koudste nacht. Slaap goed, mijn passie. 🔥❤️",
+  "Slaap lekker, mijn lief. Jouw aanraking is alles wat ik verlang 💖, zelfs in mijn dromen. 🌙"
 ];
 
 // ┌────────────── second
@@ -55,7 +73,7 @@ export default {
       aansprekingen[Math.floor(Math.random() * aansprekingen.length)];
     const message = messages[Math.floor(Math.random() * messages.length)];
 
-    const users = process.env.GN_USERS!.replace(" ", "").split(",")
+    const users = process.env.GN_USERS!.replace(" ", "").split(",");
     // Send embed to users.
     for (const user of users) {
       embed.setDescription(`${aanspreking} <@${user}>, ` + message);
@@ -63,6 +81,9 @@ export default {
       try {
         const spamPerson = await client.users.fetch(user);
         await spamPerson.send({ embeds: [embed] });
+        logger.info(
+          `Succesfully send good night message to ${spamPerson.username}`
+        );
       } catch (err) {
         logger.error(err, `Failed to send good night message to ${user}`);
       }
