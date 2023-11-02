@@ -1,0 +1,58 @@
+{
+   "logLevel": "info",
+   "clientId": "816433854309990472",
+   "guildId": "702211644922790018",
+   "chainCurrentId": "649497d59b3d22645f1eab0a",
+   "channelIds": {
+      "dailyMeme": "809014334964498476",
+      "dontBreakChain": "848306522127335424",
+      "counting": "818953831735099482",
+      "log": "984551883240771604",
+      "test": "806480788701970462"
+   },
+   "roleIds": {
+      "staff": "839440616164818985",
+      "dailyMemeHost": "809014531447455766",
+      "activeMember": "813368369218584597",
+      "muted": "805888941265387570"
+   },
+   "webhooks": {
+      "test": {
+         "url": "https://discord.com/api/webhooks/819194383010103299/HWZjyu1W8RrHdjZg9pT5K3cdP-pLE23H8K3mYWLcW0fakoAT5HCaaOgqAsr32COvSqOv",
+         "testMessage": "985478012650790963"
+      },
+      "other_bots": {
+         "url": "https://discord.com/api/webhooks/980508661325652059/4hFLowPFOy_XcuAMBK2Wo_QYGUaXbNBr2OO-rLeADBFYnpd0d1JfgMEUUxX7x3CsXMff"
+      },
+      "dont_break_chain": {
+         "url": "https://discord.com/api/webhooks/986356564095033435/cuyecN8UHBT2LLm-8wtoi30ZDQhdWGd3Q-SkJ-eFB2uwuujxBZsK2AxEGZ1F9rcUYYIJ",
+         "data": "986722509346979870"
+      },
+      "log": {
+         "url": "https://discord.com/api/webhooks/984806210647773264/HLPGrZ6or1xrfTc0a2XT1FzRAC4GTgXvY_tiVWeSP0cqb2P_YBR6aR-FyFL8NCb8PYbI"
+      }
+   },
+   "colors": {
+      "red": "#e10000",
+      "orange": "#e69138",
+      "yellow": "#ffd966",
+      "green": "#7ed321",
+      "blue": "#0099ff",
+      "purple": "#9656CE",
+      "pink": "#FF93AC",
+      "command": "#0099ff",
+      "music": "#9656CE",
+      "none": "#2F3136"
+   },
+   "leaveTimeout": 120000,
+   "legend": {
+      "required": {
+         "open": "'",
+         "close": "'"
+      },
+      "optional": {
+         "open": "\"",
+         "close": "\""
+      }
+   }
+}
