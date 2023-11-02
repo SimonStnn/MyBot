@@ -76,7 +76,7 @@ export default {
     const users = process.env.GN_USERS!.replace(" ", "").split(",");
     // Send embed to users.
     for (const user of users) {
-      embed.setDescription(`${aanspreking} <@${user}>, ` + message);
+      embed.setDescription(`${aanspreking} <@${user.trim()}>, ` + message);
 
       try {
         const spamPerson = await client.users.fetch(user);
