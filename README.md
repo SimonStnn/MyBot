@@ -56,7 +56,9 @@ cd website
 npm install
 ```
 
-3. Run the Development Server:
+3. Make `.env` from [.env.template](.env.template) and put in tokens and keys.
+
+4. Run the Development Server:
 
 ```bash
 tsc --project ./tsconfig.json
