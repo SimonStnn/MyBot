@@ -16,9 +16,8 @@ Your Discord Bot Name is a versatile bot built in TypeScript using Node.js and t
 
 ## Features
 
-- Feature 1: Describe one of your bot's main features.
-- Feature 2: List another key functionality.
-- Feature 3: Highlight a third important feature.
+- Slash commands
+- Dont break the chain. A word in a channel has to be repeated. Scores are stored in database.
 
 ## Technologies Used
 
