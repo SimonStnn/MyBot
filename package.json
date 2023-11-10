@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node .",
     "lint": "eslint .",
-    "dev": "node . | pino-pretty -i pid,hostname -t mm-dd-HH:MM:ss"
+    "dev": "node ."
   },
   "repository": {
     "type": "git",
