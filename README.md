@@ -1,6 +1,6 @@
 # MyBot
 
-Your Discord Bot Name is a versatile bot built in TypeScript using Node.js and the Discord.js library. It is designed to enhance your Discord server's functionality and provide various features. The bot is also connected to MongoDB for data storage and retrieval.
+A Discord bot.
 
 ---
 
@@ -56,7 +56,9 @@ cd website
 npm install
 ```
 
-3. Run the Development Server:
+3. Make `.env` from [.env.template](.env.template) and put in tokens and keys.
+
+4. Run the Development Server:
 
 ```bash
 tsc --project ./tsconfig.json
