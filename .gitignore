@@ -5,7 +5,7 @@ node_modules/
 .env
 
 # Ignore build files
-build/*
+build/
 
 # Ignore web folder for now
 web/
