@@ -69,7 +69,10 @@ class DontBreakTheChain {
             $set: { lastPerson: message.author.id },
             $inc: { length: 1 }
         })
-        this.length = doc.value!.length + 1
+
+        if(!doc) throw Error("Chain data was not found!")
+
+        this.length = doc.length + 1
     }
     private async updateUser(user: User, field: "count" | "broken") {
         logger.debug(`Update user: ${user.username}`)
@@ -94,9 +97,12 @@ class DontBreakTheChain {
                 length: 0,
             },
         })
+
+        if(!a) throw Error("Chain data was not found!")
+
         await message.channel.send(new Embed({
             title: "Chain was broken",
-            content: `${message.author} has broken the chain.\nThis chain was **${a.value?.length}** messages long.\nSend a new message to start a new chain.`
+            content: `${message.author} has broken the chain.\nThis chain was **${a.length}** messages long.\nSend a new message to start a new chain.`
         }))
     }
 
