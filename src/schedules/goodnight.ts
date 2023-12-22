@@ -51,6 +51,7 @@ const messages = [
   "De nacht is ons moment🌙, en ik kan niet wachten om in je armen te zijn. 💋",
   "De gedachte aan jou maakt me warm, zelfs in de koudste nacht. Slaap goed, mijn passie. 🔥❤️",
   "Slaap lekker, mijn lief. Jouw aanraking is alles wat ik verlang 💖, zelfs in mijn dromen. 🌙",
+  "Slaapwel allemaal, je krijgt een slaapkusje van Kenrie. 😘💋",
 ];
 
 // ┌────────────── second
