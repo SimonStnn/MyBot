@@ -74,6 +74,9 @@ export default {
       aansprekingen[Math.floor(Math.random() * aansprekingen.length)];
     const message = messages[Math.floor(Math.random() * messages.length)];
 
+    if (process.env.GN_USERS === "") {
+      return;
+    }
     const users = process.env.GN_USERS!.replace(" ", "").split(",");
     // Send embed to users.
     for (const user of users) {
