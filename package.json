@@ -3,10 +3,9 @@
   "version": "2.0.0",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
+    "start": "tsc && node .",
     "lint": "eslint .",
-    "dev": "node ."
+    "dev": "tsc && node ."
   },
   "repository": {
     "type": "git",
