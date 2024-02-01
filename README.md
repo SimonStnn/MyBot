@@ -69,6 +69,14 @@ Now the bot should be online.
 
 > You can also start a debug session with vs-code.
 
+## Deploying with docker
+
+To deploy the bot in docker, simply make the `.env` file from [``.env.template``](.env.template), put in the the required values and run:
+
+```bash
+docker-compose up -d
+```
+
 ### Configuration
 
 You should also update the `src/config.json` to match your values.
